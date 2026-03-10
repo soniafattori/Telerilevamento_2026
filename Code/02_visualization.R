@@ -110,4 +110,32 @@ p2<-im.ggplot(b4)
   # 4= b8 nir
 #3 filtri e 4 bande
 im.plotRGB(sentinel, r=3, g=2, b=1)  #immagine a colore naturale, associa ogni banda al proprio colore con i rispettivi livelli
-          
+
+# vicino infrarosso
+im.multiframe(1, 2)
+          im.plotRGB(sentinel, r=4, g=3, b=2) #false color red
+im.multiframe(1, 2)
+im.plotRGB(sentinel, r=3, g=2, b=1)   
+im.plotRGB(sentinel, r=4, g=3, b=2)
+
+plot(sentinel[[4]])  #per mettere il plot con scala colori
+im.plotRGB(sentinel, r=4, g=3, b=2)
+
+          #nir on green
+          g=4
+          im.plotRGB(sentinel, r=3, g=4, b=2)  #false color green
+          #Nir on top of blue component 
+          im.plotRGB(sentinel, r=3, g=2, b=4) # usato spesso a suolo nudo perchè diventano gialle, quindi ad es. per evidenziaare deforestazione false color blu
+#plot the four manners of RGB in a single multiframe
+im.multiframe(2, 2)
+im.plotRGB(sentinel, r=3, g=2, b=1)   
+im.plotRGB(sentinel, r=4, g=3, b=2)
+im.plotRGB(sentinel, r=3, g=4, b=2) 
+im.plotRGB(sentinel, r=3, g=2, b=4)
+
+#position of visible bands
+       im.plotRGB(sentinel, r=4, g=3, b=2)
+          im.plotRGB(sentinel, r=4, g=2, b=3) #è importante solo l'infrarosso (banda 4)
+pairs(sentinel) grafico con tutte le correlazioni con tutte le bande
+
+
