@@ -138,4 +138,6 @@ im.plotRGB(sentinel, r=3, g=2, b=4)
           im.plotRGB(sentinel, r=4, g=2, b=3) #è importante solo l'infrarosso (banda 4)
 pairs(sentinel) grafico con tutte le correlazioni con tutte le bande
 
+# plotRGB() from terra
+        plotRGB(sentinel, r=4, g=2, b=3, stretch="lin")
 
