@@ -140,4 +140,4 @@ pairs(sentinel) grafico con tutte le correlazioni con tutte le bande
 
 # plotRGB() from terra
         plotRGB(sentinel, r=4, g=2, b=3, stretch="lin")
-
+plotRGB(sentinel, r=4, g=2, b=3, stretch="hist")
