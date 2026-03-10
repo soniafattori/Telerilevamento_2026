@@ -6,6 +6,7 @@ library(imagery)
 install.packages("viridis")
 library(viridis)
 
+install.packages("patchwork")
 # listing data
 im.list()
 
@@ -80,3 +81,33 @@ plot(sentinel$sentinel.dolomites.b8)
 # layer1=b2, layer2=b3, layer3=b4, layer4=b8
 plot(sentinel[[4]])
 plot(sentinel[[2]])
+
+# quarto metodo per un plot: ggplot2
+#installa ggplot2
+        install.packages("ggplot2")
+
+?im.ggplot
+b2<-im.import( "sentinel.dolomites.b2.tif"  )
+b3<-im.import( "sentinel.dolomites.b3.tif" )
+b4<-im.import( "sentinel.dolomites.b4.tif"    )
+b8<-im.import( "sentinel.dolomites.b8.tif")
+
+p1<-im.ggplot(b8)
+p2<-im.ggplot(b4)
+
+          p1+p2
+
+# multiframe
+          #1. par(mfrow=c(1,2))
+          #2. im.multiframe(1,2)
+          #3. stack
+          #4. ggplot2 patchwork
+#RGB ploting
+  sentinel<-c(b2, b3, b4, b8)   #il centro è lo stack
+  # 1=b2 blue
+  # 2=b3 green
+  # 3= b4 red
+  # 4= b8 nir
+#3 filtri e 4 bande
+im.plotRGB(sentinel, r=3, g=2, b=1)  #immagine a colore naturale, associa ogni banda al proprio colore con i rispettivi livelli
+          
