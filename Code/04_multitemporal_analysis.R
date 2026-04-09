@@ -1,5 +1,7 @@
 # R code for performing multitemporal analysis with satellite imagery
 
+install.packages("ggrdiges")
+library (ggrdiges)
 library (terra)
 library (imageRy)
 library (viridis)
@@ -44,3 +46,26 @@ plot (dif)
 
 #RGB
 im.plotRGB(GR2, r=1, g=2, b=4)
+
+# import data
+ndvi <- im.import("Sentinel2_NDVI")
+
+hist (ndvi)
+
+# distribuzione di frequenza rappresentata da curve continue: 
+im.ridgeline(ndvi, scale=1, palette="viridis") 
+
+names(ndvi)<-c ("02feb", "05may", "08aug", "11nov")
+im.ridgeline(ndvi, scale=2, palette="viridis") 
+
+plot(ndvi[[1]], ndvi[[2]])
+# y= x
+# y= a + bx 
+# a= 0, b= 1
+abline(0, 1, col= "blue")
+
+# mettere le stesse scale 
+# xmin = -0,3
+# y max = 0.9
+plot(ndvi[[1]], ndvi[[2]], xlim=c(-0.3, 0.9), ylim=c(-0.3, 0.9))
+abline(0, 1, col= "blue")
