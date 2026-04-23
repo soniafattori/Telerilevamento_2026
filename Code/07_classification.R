@@ -2,7 +2,8 @@
 
 library(terra)
 library(imageRy)
-
+library(ggplot2)
+library(patchwork)
 # set wd
 setwd("~/Downloads")
 # C://utenteovveroio/Downloads/
@@ -84,3 +85,31 @@ tabout <- data.frame(
   perc1992=c(83, 17),
   perc2006=c(45, 55)
   )
+
+ggplot(tabout, aes(x=class ,y= perc1992, color= class))+ 
+geom_bar(stat="identity", fill="blue")  #bar plot, istogramma
+
+ggplot(tabout, aes(x=class ,y= perc2006, color= class))+ 
+geom_bar(stat="identity", fill="green")  #bar plot, istogramma
+
+#using patchwork
+pippo <- ggplot(tabout, aes(x=class ,y= perc1992, color= class))+ 
+geom_bar(stat="identity", fill="blue")  #bar plot, istogramma
+
+pluto <- ggplot(tabout, aes(x=class ,y= perc2006, color= class))+ 
+geom_bar(stat="identity", fill="green")  #bar plot, istogramma
+
+pippo+pluto
+
+# modifica del valore delle y ylim()
+pippoo <- ggplot(tabout, aes(x=class ,y= perc1992, color= class))+ 
+geom_bar(stat="identity", fill="blue") + ylim(c(0,100)) + theme(legend.position="none") + theme_minimal()
+
+plutoo <- ggplot(tabout, aes(x=class ,y= perc2006, color= class))+ 
+geom_bar(stat="identity", fill="green") + ylim(c(0,100)) + theme(legend.position="none") + theme_minimal()
+
+pippoo + plutoo
+
+  them(legend.position="none") #removing legends
+    + theme_minimal()   #colore sfondo
+                                               
